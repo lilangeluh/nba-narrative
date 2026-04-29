@@ -8,6 +8,7 @@
   --accent-orange: #D98C3B;
   --accent-purple: #7B5EA7;
   --accent-red: #C85A42;
+  --link-color: #9b72bb;
   --content-width: 720px;
   --wide-width: 1040px;
 }
@@ -176,15 +177,16 @@ body {
 }
 
 .content p a {
-  color: var(--text-primary);
+  color: var(--link-color);
   text-decoration: underline;
-  text-decoration-color: var(--text-caption);
+  text-decoration-color: var(--link-color);
+  text-decoration-skip-ink: none;
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s;
 }
 
 .content p a:hover {
-  text-decoration-color: var(--text-primary);
+  text-decoration-color: var(--link-color);
 }
 
 /* ===== CHART CONTAINERS ===== */
@@ -299,14 +301,15 @@ body {
 }
 
 .sources a {
-  color: var(--text-secondary);
+  color: var(--link-color);
   text-decoration: underline;
-  text-decoration-color: #ccc;
+  text-decoration-color: var(--link-color);
+  text-decoration-skip-ink: none;
   text-underline-offset: 2px;
 }
 
 .sources a:hover {
-  text-decoration-color: var(--text-secondary);
+  text-decoration-color: var(--link-color);
 }
 
 /* ===== SCROLL REVEAL ===== */
