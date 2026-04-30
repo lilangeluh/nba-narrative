@@ -15,6 +15,10 @@
 </head>
 <body>
 
+<div class="scroll-progress" aria-hidden="true">
+  <div class="scroll-progress-bar"></div>
+</div>
+
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-collage" role="img" aria-label="Collage of five NBA players shooting three-pointers: LeBron James, James Harden, Stephen Curry, Klay Thompson, and Damian Lillard">
@@ -129,12 +133,38 @@
 
 <!-- ===== SOURCES ===== -->
 <div class="sources reveal">
-  <h3>Data and Sources</h3>
+  <h3>Data Source</h3>
   <p>All data was sourced from <a href="https://www.basketball-reference.com/">Basketball Reference</a>, which publishes official NBA data licensed from Stats LLC, the league's official data provider. Player per-game statistics (2010–11 through 2024–25) were pulled from the <a href="https://www.basketball-reference.com/leagues/NBA_2025_per_game.html">season stats tables</a>. Shot distribution data comes from the <a href="https://www.basketball-reference.com/leagues/NBA_2025.html#all_shooting_team-opponent">team shooting tables</a>. Players with fewer than 20 games or 20 minutes per game were excluded and traded players are represented by full-season totals.</p>
 </div>
 
 <!-- ===== SCROLL REVEAL SCRIPT ===== -->
 <script>
+  // Scroll progress bar
+  const progressBar = document.querySelector('.scroll-progress-bar');
+  const accentColors = [
+    '--accent-blue',
+    '--accent-green',
+    '--accent-orange',
+    '--accent-purple',
+    '--accent-red'
+  ];
+  const randomAccent = accentColors[Math.floor(Math.random() * accentColors.length)];
+  progressBar.style.backgroundColor = getComputedStyle(document.documentElement)
+    .getPropertyValue(randomAccent)
+    .trim();
+
+  const updateScrollProgress = () => {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = scrollableHeight > 0
+      ? (window.scrollY / scrollableHeight) * 100
+      : 0;
+    progressBar.style.width = `${Math.min(scrollProgress, 100)}%`;
+  };
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
+  updateScrollProgress();
+
   // General scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
