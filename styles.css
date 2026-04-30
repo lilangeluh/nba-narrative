@@ -57,6 +57,7 @@ body {
   max-height: 700px;
   overflow: hidden;
   background: #1a1a1a;
+  --hero-border-width: clamp(6px, min(2.15vh, 1.25vw), 15px);
 }
 
 .hero-collage {
@@ -93,6 +94,7 @@ body {
 .hero-panel:nth-child(5) { transition-delay: 1.0s; }
 
 .hero-panel-inner {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -106,11 +108,24 @@ body {
   color: rgba(255,255,255,0.85);
 }
 
-.hero-panel:nth-child(1) .hero-panel-inner { background: var(--accent-blue); }
-.hero-panel:nth-child(2) .hero-panel-inner { background: var(--accent-green); }
-.hero-panel:nth-child(3) .hero-panel-inner { background: var(--accent-orange); }
-.hero-panel:nth-child(4) .hero-panel-inner { background: var(--accent-purple); }
-.hero-panel:nth-child(5) .hero-panel-inner { background: var(--accent-red); }
+.hero-panel:nth-child(1) { --hero-panel-accent: var(--accent-green); }
+.hero-panel:nth-child(2) { --hero-panel-accent: var(--accent-orange); }
+.hero-panel:nth-child(3) { --hero-panel-accent: var(--accent-blue); }
+.hero-panel:nth-child(4) { --hero-panel-accent: var(--accent-red); }
+.hero-panel:nth-child(5) { --hero-panel-accent: var(--accent-purple); }
+
+.hero-panel-inner {
+  background: var(--hero-panel-accent);
+}
+
+.hero-panel-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 var(--hero-border-width) var(--hero-panel-accent);
+}
 
 .hero-panel img {
   width: 100%;
